@@ -1,0 +1,263 @@
+/* ═══════════════════════════════════════════════════════════
+   Shuxin Cao — personal site
+   Following the classic academic-homepage format (à la
+   zhengyiluo.com / yiqingxu.org): plain, system fonts, a single
+   ~880px column, gray hairlines, blue links. No frills.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --paper:   #ffffff;
+  --ink:     #000000;
+  --ink-2:   #333333;
+  --muted:   #828282;
+  --rule:    #e6e6e6;
+  --link:       #5b40c6; /* blend of lhy.xyz's #0076df and eeching's #b509ac */
+  --link-hover: #44309a;
+
+  --sans: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --slab: "Roboto Slab", "Roboto", Georgia, serif;
+  --mono: SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* about-section treatment, after ruoshiliu.github.io */
+  --lato: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --ruoshi-link: #6f81c9;
+
+  --maxw: 880px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.58;
+  padding-bottom: 40px;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+h2 { font-family: var(--slab); font-weight: 700; font-size: 25px; margin: 0 0 14px; letter-spacing: normal; }
+h3 { font-family: var(--slab); font-weight: 700; font-size: 18.5px; margin: 0 0 2px; }
+h4 { font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; }
+
+.skip { position: absolute; left: -9999px; top: 0; background: var(--link); color: #fff; padding: 10px 16px; z-index: 99; }
+.skip:focus { left: 12px; top: 12px; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+/* ── nav ────────────────────────────────────────────────── */
+.navbar {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: saturate(1.6) blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 54px; }
+.brand { font-weight: 700; color: var(--ink); font-size: 19px; }
+.brand:hover { text-decoration: none; color: var(--muted); }
+
+.nav-links { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+.nav-links a {
+  color: var(--muted); font-size: 16px; letter-spacing: .01em;
+  padding: 4px 0; border-bottom: 2px solid transparent;
+}
+.nav-links a:hover { color: var(--ink); text-decoration: none; }
+.nav-links a.active { color: var(--ink); font-weight: 700; border-bottom-color: var(--link); }
+
+.navbar-toggler {
+  display: none; flex-direction: column; gap: 4px;
+  background: none; border: 0; padding: 8px; cursor: pointer;
+}
+.navbar-toggler span { width: 20px; height: 2px; background: var(--ink); border-radius: 1px; transition: transform .2s, opacity .2s; }
+.navbar-toggler[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.navbar-toggler[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.navbar-toggler[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── page sections ──────────────────────────────────────── */
+.page { padding-top: 30px; }
+.post, .news, .content, .publications, .experience, .photography { padding: 28px 0; }
+
+.post-header { margin-bottom: 18px; }
+.post-title { font-family: var(--lato); font-weight: 300; font-size: 34px; color: #272727; }
+.post-title:hover { text-decoration: none; }
+.post-title b { font-weight: 700; }
+
+.identity { margin: 8px 0 0; color: #272727; font-size: 16px; line-height: 1.55; font-family: var(--lato); font-weight: 300; }
+.identity .email { font-family: var(--lato); font-size: 15px; color: var(--muted); }
+
+/* ── about intro: photo floats inline with the text, after ruoshiliu.github.io ── */
+.intro-flow { font-family: var(--lato); overflow: hidden; } /* overflow:hidden clears the float */
+.intro-flow p {
+  text-align: left; margin: 0 0 16px; color: #272727;
+  font-size: 17.5px; font-weight: 300; line-height: 1.6;
+}
+.intro-flow a { color: var(--ruoshi-link); font-weight: 700; }
+.intro-flow a:hover { color: var(--ruoshi-link); text-decoration: underline; }
+
+.profile-img-round {
+  float: right;
+  width: 210px; height: auto;
+  margin: -6px 0 16px 24px;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  filter: brightness(1.12) contrast(0.87) saturate(0.82) blur(0.3px);
+}
+
+.contact-row { margin-top: 4px; font-size: 15.5px; }
+.contact-row a { color: var(--ruoshi-link); font-weight: 700; }
+.contact-row a:hover { color: var(--ruoshi-link); }
+.contact-row .sep { color: var(--rule); margin: 0 9px; }
+.contact-row .note { font-size: 12.5px; color: var(--muted); font-style: italic; }
+
+/* ── news: matches the about/intro treatment (Lato, after ruoshiliu.github.io) ── */
+#news h2 { font-family: var(--lato); font-weight: 700; color: #272727; }
+.table-wrap table { width: 100%; border-collapse: collapse; }
+.table-wrap td { padding: 2px 0; vertical-align: top; font-size: 16px; color: #272727; font-family: var(--lato); font-weight: 300; }
+.table-wrap .date { width: 78px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table-wrap a { color: var(--ruoshi-link); font-weight: 700; }
+.table-wrap a:hover { color: var(--ruoshi-link); text-decoration: underline; }
+.news-more { display: none; }
+.news.expanded .news-more { display: table-row; }
+.show-more {
+  margin-top: 6px; background: none; border: 0; padding: 0;
+  color: var(--ruoshi-link); font-size: 13.5px; cursor: pointer; font-family: var(--lato); font-weight: 700;
+}
+.show-more:hover { text-decoration: underline; }
+.news.expanded .show-more { display: none; }
+
+/* ── research ───────────────────────────────────────────── */
+.intro { color: var(--ink-2); max-width: 68ch; font-size: 17px; }
+.research-list { list-style: none; padding: 0; margin: 18px 0 0; counter-reset: none; }
+.research-list li { margin-bottom: 16px; color: var(--ink-2); max-width: 68ch; font-size: 17px; }
+.research-list b { color: var(--ink); }
+
+/* ── publications ───────────────────────────────────────── */
+.pub-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 20px; }
+.pub-tab {
+  background: none; border: 0; cursor: pointer; font-family: var(--sans);
+  padding: 0 0 10px; margin-bottom: -1px;
+  font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); border-bottom: 2px solid transparent;
+}
+.pub-tab:hover { color: var(--ink); }
+.pub-tab.active { color: var(--ink); border-bottom-color: var(--link); }
+
+.paper-entry { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.paper-entry:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.paper-thumb {
+  flex: 0 0 150px; width: 150px; height: 112px;
+  border-radius: 4px; overflow: hidden;
+  background: #f4f4f4; border: 1px solid var(--rule);
+  display: grid; place-items: center; position: relative;
+}
+.paper-thumb::after {
+  content: attr(data-fallback);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--muted);
+}
+.paper-thumb img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.paper-info { list-style: none; padding: 0; margin: 0; min-width: 0; }
+.paper-info li { margin: 0 0 4px; }
+.paper-info .title { font-weight: 700; font-size: 18.5px; line-height: 1.32; color: var(--ink); }
+.paper-info .authors { font-size: 15.5px; color: var(--ink-2); }
+.paper-info .venue { font-size: 14.5px; color: var(--muted); }
+.paper-info .pub-links { margin-top: 7px; }
+.paper-info .pub-links a { font-size: 14.5px; margin-right: 9px; }
+
+/* publications: matches the about/news treatment (Lato, after ruoshiliu.github.io) */
+#publications h2 { font-family: var(--lato); font-weight: 700; color: #272727; }
+#publications .pub-tab { font-family: var(--lato); color: var(--muted); }
+#publications .pub-tab.active,
+#publications .pub-tab:hover { color: #272727; }
+#publications .pub-tab.active { border-bottom-color: var(--ruoshi-link); }
+#publications .paper-info .title { font-family: var(--lato); font-weight: 700; color: #272727; }
+#publications .paper-info .authors { font-family: var(--lato); font-weight: 300; color: #272727; }
+#publications .paper-info .authors b { font-weight: 700; }
+#publications .paper-info .venue { font-family: var(--lato); font-weight: 300; color: var(--muted); }
+#publications .paper-info .pub-links a { color: var(--ruoshi-link); font-weight: 700; font-family: var(--lato); }
+#publications .paper-info .pub-links a:hover { color: var(--ruoshi-link); text-decoration: underline; }
+
+/* ── experience ─────────────────────────────────────────── */
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-list li { border-bottom: 1px solid var(--rule); padding: 18px 0; }
+.post-list li:first-child { padding-top: 0; }
+.post-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.post-meta { color: var(--muted); font-size: 14px; }
+.post-list h3 { margin-top: 5px; }
+.where { font-weight: 400; color: var(--muted); font-size: 14.5px; }
+.post-list p { margin: 5px 0 0; color: var(--ink-2); font-size: 15.5px; max-width: 68ch; }
+
+/* ── photography ────────────────────────────────────────── */
+.gallery { columns: 3; column-gap: 14px; margin: 22px 0 30px; }
+.gallery figure { break-inside: avoid; margin: 0 0 16px; }
+.gallery img {
+  width: 100%; display: block; border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+  cursor: zoom-in;
+}
+.gallery figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; text-align: center; }
+
+.ph-empty {
+  break-inside: avoid; margin: 0 0 14px;
+  border: 1px dashed var(--rule); border-radius: 5px;
+  display: grid; place-items: center; text-align: center;
+  color: var(--muted); font-family: var(--mono); font-size: 11px; line-height: 1.8;
+  padding: 18px; background: #fafafa;
+}
+.ph-empty span { display: block; font-size: 20px; opacity: .4; margin-bottom: 6px; }
+
+.hobby-row { display: flex; gap: 30px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 22px; }
+.hobby { flex: 1 1 200px; }
+.hobby p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+/* ── reviewer: matches the about/news/publications treatment (Lato, after ruoshiliu.github.io) ── */
+#reviewer h2 { font-family: var(--lato); font-weight: 700; color: #272727; }
+#reviewer p { font-family: var(--lato); font-weight: 300; font-size: 17.5px; color: #272727; margin: 0; }
+
+/* ── footer ─────────────────────────────────────────────── */
+.foot { border-top: 1px solid var(--rule); padding-top: 24px; font-size: 13px; color: var(--muted); }
+.foot p { margin: 0; }
+
+/* ── lightbox ───────────────────────────────────────────── */
+.lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(10,10,10,.94); display: grid; place-items: center; padding: 40px; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: 100%; max-height: 84vh; object-fit: contain; border-radius: 3px; }
+.lb-cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: #ccc; font-size: 12.5px; margin: 0; }
+.lightbox button { position: absolute; background: none; border: 0; color: #fff; cursor: pointer; font-size: 32px; line-height: 1; opacity: .6; padding: 12px; }
+.lightbox button:hover { opacity: 1; }
+.lb-close { top: 12px; right: 18px; }
+.lb-prev { left: 6px; top: 50%; transform: translateY(-50%); font-size: 42px; }
+.lb-next { right: 6px; top: 50%; transform: translateY(-50%); font-size: 42px; }
+
+/* ── responsive ─────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .navbar-toggler { display: flex; }
+  .nav-links {
+    position: absolute; top: 54px; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--rule);
+    flex-direction: column; gap: 0; padding: 8px 22px;
+    display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 0; border-bottom: 1px solid var(--rule); width: 100%; }
+  .nav-links li:last-child a { border-bottom: 0; }
+
+  .profile-img-round { width: 125px; height: auto; margin: -4px 0 12px 16px; }
+
+  .paper-entry { flex-direction: column; gap: 10px; }
+  .paper-thumb { width: 100%; }
+
+  .gallery { columns: 2; }
+}
+@media (max-width: 480px) {
+  .gallery { columns: 1; }
+  .lightbox { padding: 16px; }
+}
