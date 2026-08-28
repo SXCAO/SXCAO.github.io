@@ -107,7 +107,7 @@ h4 { font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spac
   margin: -6px 0 16px 24px;
   border-radius: 6px;
   border: 1px solid var(--rule);
-  filter: brightness(1.12) contrast(0.87) saturate(0.82) blur(0.3px);
+  filter: brightness(1.12) contrast(0.96) saturate(0.94);
 }
 
 .contact-row { margin-top: 4px; font-size: 15.5px; }
